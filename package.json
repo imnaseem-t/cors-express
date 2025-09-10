@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "start:prod": "forever start index.js",
+    "stop": "forever stop index.js",
+    "list": "forever list",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
     "axios": "^1.6.0",
-    "dotenv": "^16.3.1"
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "forever": "^4.0.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
