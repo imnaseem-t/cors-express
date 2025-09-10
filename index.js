@@ -5,6 +5,15 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 
+const https = require("https");
+const fs = require("fs");
+
+
+const options = {
+  key: fs.readFileSync("./ssl/server.key"),
+  cert: fs.readFileSync("./ssl/server.cert"),
+};
+
 const app = express();
 const PORT = 3002;
 
@@ -120,7 +129,18 @@ app.get('/health', (req, res) => {
 });
 
 // Start the server
+/*
 app.listen(PORT, () => {
+  console.log(`🚀 CORS proxy server running on http://localhost:${PORT}`);
+  console.log(`📡 GET proxy: http://localhost:${PORT}/get?url=<target_url>`);
+  console.log(`📡 POST proxy: http://localhost:${PORT}/post?url=<target_url>`);
+  console.log(`❤️  Health check: http://localhost:${PORT}/health`);
+});
+*/
+
+
+https.createServer(options, app).listen(3002, "0.0.0.0", () => {
+  console.log("HTTPS server running on port 3002");
   console.log(`🚀 CORS proxy server running on http://localhost:${PORT}`);
   console.log(`📡 GET proxy: http://localhost:${PORT}/get?url=<target_url>`);
   console.log(`📡 POST proxy: http://localhost:${PORT}/post?url=<target_url>`);
