@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "start:prod": "forever start index.js",
+    "restart": "forever restart 0",
     "stop": "forever stop index.js",
     "list": "forever list",
     "dev": "nodemon index.js",
